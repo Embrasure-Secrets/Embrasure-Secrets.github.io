@@ -460,7 +460,7 @@
 
         <p>Audit logs are written to the database through a dedicated logs worker. Because our database requires IAM authentication to connect with it, the logs worker itself has to generate IAM authentication tokens like any other non-admin user. Additionally, the logs worker has a corresponding user account defined on the database itself and is given the necessary privileges to create records on the database level.</p>
 
-        <h2 id="commands-and-bird's-eye-view">7 Commands and Bird's Eye View</h2>
+        <h2 id="commands-and-request-lifecycle">7 Commands and Request Lifecycle</h2>
 
         <p>Now that we’ve gone over the many pieces of Embrasure’s architecture, let’s look at the complete path an Embrasure command takes from request to response for a non-admin user adding a new secret.</p>
 
