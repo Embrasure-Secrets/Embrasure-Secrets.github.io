@@ -19,6 +19,7 @@
     charset="utf-8" />
     <!-- <style></style> -->
     <link rel="stylesheet" href="main.css" />
+    <link rel="shortcut icon" type="image/jpg" href="favicon.ico"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- <script></script> -->
@@ -85,17 +86,17 @@
 
         <h3>2.4 Hard Coding Secrets</h3>
 
-        <p>In 2019, <sup>[1]</sup>North Carolina State University researchers scanned almost 13% of Github’s public repositories. They found that "not only is secret leakage pervasive–affecting over 100,000 repositories–but thousands of new, unique secrets are leaked daily." This study highlights the reality that many software projects accidentally expose their secrets.</p>
+        <p>In 2019, <sup>[1]</sup> North Carolina State University researchers scanned almost 13% of Github’s public repositories. They found that "not only is secret leakage pervasive–affecting over 100,000 repositories–but thousands of new, unique secrets are leaked daily." This study highlights the reality that many software projects accidentally expose their secrets. </p>
 
         <h3>2.5 Malicious Actors</h3>
 
-        <p>From phishing to packet sniffing internet traffic, developers need to remain vigilant in attempts to steal their secrets. <sup>[2]</sup>A prime example of the cost of poor secret management is the 2016 Uber data breach, which exposed the personal information of 57 million riders and drivers.</p>
+        <p>From phishing to packet sniffing internet traffic, developers need to remain vigilant against attempts to steal their secrets. <sup>[2]</sup>The consequences are compromised systems that can lead to things like data breaches, such as the one at Uber in 2016 that resulted in the exposure of the personal data of 57 million users of the app.</p>
 
-        <p>The breach was initiated by hackers who exploited private authentication information inadvertently exposed on GitHub, a widely used platform for code storage. Uber engineers had unknowingly made sensitive authentication details accessible, allowing the attackers to breach a third-party, cloud-based service.</p>
+        <p>The breach was initiated by hackers who exploited private authentication information inadvertently exposed on GitHub, a widely used platform for code storage. The information had been pushed into source control and was now publicly visible, allowing the attackers to use the information to breach a third-party, cloud-based service.</p>
 
         <h3>2.6 Securing secrets</h3>
 
-        <p>As previously mentioned, one of the challenges of having secrets is protecting them from unauthorized users. Secrets can be exposed at two main points in their life cycle: at-rest and in-transit. At-rest exposure refers to unauthorized access from a breach in a plaintext database or accidentally committing secrets to a code repository. In-transit exposure refers to the risk of secrets contained in communication over the internet being intercepted and discovered by unauthorized viewers.</p>
+        <p>Secrets can be exposed at two main points in their life cycle: at-rest and in-transit. At-rest exposure refers to unauthorized access from a breach in a plaintext database or an accidental commit of a secret to a code repository. In-transit exposure refers to the risk of secrets contained in communication over a network being intercepted and discovered by unauthorized viewers.</p>
 
         <h3>2.7 Secret Sprawl</h3>
 
@@ -103,13 +104,13 @@
         src="https://embrasure.s3.amazonaws.com/secret_sprawl.png"
         alt="secret sprawl"/>
 
-        <p>In contrast to traditional credentials, a project’s secrets are shared among developers, applications, and infrastructure systems. The dynamic nature of projects, and in turn, secrets, inevitably leads to a rise in the number of secrets employed in a development cycle. This progression of distributed and sensitive information is a well-known phenomenon with a specific title: secret sprawl. The surface area of attack and your overall security risk increases with each place secrets are shared.</p>
+        <p>In contrast to traditional credentials, a project’s secrets are shared among developers, applications, and infrastructure systems. The dynamic nature of projects inevitably leads to a rise in the number of secrets employed in a development cycle. This progression of distributed and sensitive information is a well-known phenomenon with a specific title: secret sprawl. The surface area of attack and your overall security risk increases with each place secrets are shared.</p>
 
         <h3>2.8 Secret Synchronization</h3>
 
         <p>Sharing secrets among a group of developers can pose significant challenges. What happens when someone on your team changes a secret? How can you ensure that every team member has access to the updated secret?</p>
 
-        <p>It is crucial to keep everyone updated when changes are made to a secret. Failure to synchronize these changes can result in developers and important systems not having access to the resources they need to work.</p>
+        <p>It is crucial to keep everyone updated when changes are made to a secret. Failure to synchronize these changes can result in developers and critical systems not having access to the resources they need to work.</p>
 
         <p>Now that we have explored the importance of secrets management and its potential challenges, let's take a closer look at how those challenges are typically addressed: secrets managers.</p>
 
@@ -117,7 +118,9 @@
 
         <h3>3.1 What are secrets managers?</h3>
 
-        <p>Secrets managers are specialized software tools enabling developers to store, manage, and distribute sensitive information securely. They provide a centralized repository for keeping secrets, reducing the risk of secret sprawl and minimizing the surface area of attack. Only authorized users and applications can access the secrets, ensuring the security and integrity of software projects. Secrets managers are a critical component of modern software development, as they help safeguard sensitive information and control access to it.</p>
+        <p>Secrets managers are specialized software tools enabling developers to store, manage, and distribute sensitive information securely. They provide a centralized repository for keeping secrets, reducing the risk of secret sprawl and minimizing the surface area of attack.</p>
+
+        <p>Only authorized users and applications can access the secrets, ensuring the security and integrity of software projects. Secrets managers are a critical component of modern software development, as they help safeguard sensitive information and control access to it.</p>
 
         <img
         src="https://embrasure.s3.amazonaws.com/centralization.png"
@@ -135,8 +138,7 @@
 
         <p>Secrets managers use this exact technique to encrypt their stored data and only decrypt it for intended users. The information is useless to unauthorized users even if the database is breached. This form of encryption is called at-rest encryption.</p>
 
-
-        <p>Secrets managers also provide in-transit encryption to secure secret information sent over the network and provide a mechanism for authorized users to decrypt the message. This is typically done through a communication protocol like HTTPS.</p>
+        <p>Secrets managers also provide in-transit encryption to secure secret information sent over the network and provide a mechanism for authorized users to decrypt the message. This is typically done through a secure communication protocol like HTTPS.</p>
 
         <p>A service that offers both in-transit and at-rest encryption, along with a mechanism for secure decryption, is said to provide end-to-end encryption, ensuring that the secret information remains secure throughout its transmission and storage.</p>
 
@@ -144,56 +146,56 @@
 
         <h3>3.4 User authentication and access management</h3>
 
-        <p>All secrets managers provide some form of authentication to identify users and confirm they can access the resources they request. The most common form of identification is a username and password.</p>
+        <p>All secrets managers provide some form of authentication to identify users and confirm they can access their requested resources. The most common form of identification is a username and password.</p>
 
         <h3>3.5 Principle of least privilege and user access management</h3>
 
-        <p>Authentication alone is not enough to secure access to secrets. No secure organization gives everyone access to every single sensitive document they own. Instead, they follow the Principle of Least Privilege (PoLP). The Principle of Least Privilege is a security concept that limits user access rights to only the necessary resources required to perform their job functions.</p>
+        <p>Authentication alone is not enough to secure access to secrets. No secure organization gives everyone access to every single sensitive document they own. Instead, they follow the Principle of Least Privilege (PoLP), a security concept that limits user access rights to only the necessary resources required to perform their job functions.</p>
 
         <p>Since each developer’s access to secrets increases the risk of secret exposure, secrets managers allow teams to specify what secrets individual developers do or do not need access to. This helps limit the potential size of a breach if a developer's authentication information is compromised.</p>
 
-        <p>However, even with PoLP in place, there is still a risk of secrets being compromised. That's why audit logs are essential for identifying and responding to potential security threats.</p>
+        <p>However, even with PoLP in place, there is still a risk of secrets being compromised. Audit logs are essential for identifying and responding to potential security threats.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/audit_log.png"
+        src="https://embrasure.s3.amazonaws.com/log_data.png"
         alt="audit log"/>
         <h3>3.6 Access Audit Logs in Secret Management</h3>
 
-        <p>Audit logs provide a comprehensive record of events such as accessing, modifying, creating, and deleting secrets. This gives organizations a clear overview of the characteristics and timing of interactions with secrets.</p>
+        <p>Audit logs comprehensively record events such as accessing, modifying, creating, and deleting secrets. This gives organizations a clear overview of the characteristics and timing of interactions with secrets.</p>
 
         <p>Through the review of audit logs, organizations can not only identify anomalous access patterns but also engage in effective action monitoring. This dual functionality enables quick detection and response to potential security threats as organizations actively observe ongoing activities in real time.</p>
 
         <h3>3.7 Injection Techniques for Secrets</h3>
 
-        <p>So far, we’ve covered the importance of secure storage, but how do we transfer these sensitive secrets to where they’re needed within a software application? What does this transfer process entail? How can we prevent authorized interception during transmission and make the transfer process as seamless and effortless as possible?</p>
+        <p>So far, we’ve covered the importance of secure storage, but how do we transfer these sensitive secrets to where they’re needed within a software application? What does this transfer process entail? How can we prevent unauthorized interception during transmission and make the transfer process as seamless and effortless as possible?</p>
 
-        <p>The solution to this problem is called secret injection, which can be implemented through several standard methods.</p>
+        <p>The solution to this problem is called secret injection, which can be implemented several ways.</p>
 
         <p>There are three primary implementations for secret injection – HTTP API calls, SDK commands, and program wrappers.</p>
 
         <h3>3.8 HTTP API Calls</h3>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/request.png"
+        src="https://embrasure.s3.amazonaws.com/request_response2.png"
         alt="request response in HTTP API call"/>
 
-        <p>Some secrets managers expose an API that allows users to perform various operations, such as retrieving and updating secrets. Secrets are securely stored outside an application and are fetched by sending requests to these endpoints, which retrieve these secrets to be used in the application.</p>
+        <p>Some secrets managers expose an API that allows users to perform various operations, such as retrieving and updating secrets. Secrets are securely stored outside an application and are fetched by sending requests to these endpoints, which retrieve the secrets used by the application.</p>
 
         <h3>3.9 Software Developer Kit (SDK) Commands</h3>
 
-        <p>Many secrets managers provide SDKs in many languages for interacting with them. The advantage of this method is that it abstracts away the complexity of working with the API described above and replaces it with easier-to-use function invocations. The disadvantage is that developers migrating to an SDK-based secrets manager into an existing codebase must replace all references to secrets with the SDK functions, which can be time-consuming. It also means that any significant updates to the secrets manager have the potential to break the apps that are using the SDK.</p>
+        <p>Many secrets managers provide SDKs in many languages for interacting with them.</p>
+
+        <p>The advantage of this method is that it abstracts away the complexity of working with the API described above and replaces it with easier-to-use function invocations. The disadvantage is that developers migrating to an SDK-based secrets manager in an existing codebase must replace all references to secrets with the SDK functions, which can be time-consuming. It also means that any significant updates to the secrets manager have the potential to break the apps that are using the SDK.</p>
 
         <h3>3.10 Program Wrappers</h3>
 
-        <p>A wrapper is a layer of abstraction between your application and its secrets manager.</p>
-
-        <p>A wrapper and an SDK have similar functions, but they differ in their implementation. While an SDK provides a complete set of tools for interacting with a secrets manager, a wrapper is a secure gateway that retrieves secrets from storage, decrypts them, and injects them into your application at runtime.</p>
+        <p>A wrapper and an SDK have similar functions but differ in implementation. While an SDK provides a complete set of tools for interacting with a secrets manager, a wrapper is a secure gateway that retrieves secrets from storage, decrypts them, and injects them into your application at runtime. </p>
 
         <img src="https://embrasure.s3.amazonaws.com/wrapper.png" alt="program wrapper injecting secrets"/>
 
-        <p>Wrappers work by preloading secrets before your application runs and initiating a child process of your application with the secrets injected. This process allows your application to access secrets using the same syntax as it would if it were using a .env file without worrying about exposing its secrets or requiring direct modifications to the source code.</p>
+        <p>Wrappers work by preloading secrets before your application runs and initiating a child process of your application with the secrets injected. This process allows your application to access secrets using the same syntax as it would if it were using a <code>.env</code> file without worrying about exposing its secrets or requiring direct modifications to the source code.</p>
 
-        <p>Let’s now shift our focus from application-level concerns to storage and server hosting. </p>
+        <p>Let’s shift our focus from application-level concerns to storage and server hosting.</p>
 
         <h3>3.11 Self-hosted vs. Managed Solutions</h3>
 
@@ -209,7 +211,7 @@
 
         <h2 id="existing-solutions">4 Existing Solutions</h2>
 
-        <p>We’ve covered the essential features provided by all secrets managers, but that was not an exhaustive list of all features.</p>
+        <p>We’ve covered the essential features provided by all secrets managers, but there are important differences between them.</p>
 
         <h3>4.1 Lightweight Solutions</h3>
 
@@ -225,11 +227,11 @@
 
         <p>Enterprise-level solutions cater to complex enterprise environments and provide advanced functionalities like dynamic secrets, encryption-as-a-service, fine-grained access controls, and automated secret rotation. These capabilities are designed to handle the needs of larger organizations or higher security requirement applications.</p>
 
-        <p>Automated secret rotation updates and secures credentials and secrets for resources without manual intervention or downtime. It generates and archives new credentials while seamlessly updating the resource that uses them.</p>
+        <p>Automated secret rotation updates secrets without manual intervention or downtime. It generates and archives new credentials while seamlessly updating the resource that uses them.</p>
 
         <p>On the other hand, dynamic secrets create temporary credentials upon request and provide short-lived access, but they come at a higher cost and require more involved configuration.</p>
 
-        <p>Enterprise-level solutions cater to complex enterprise environments and provide advanced functionalities like dynamic secrets, encryption-as-a-service, and fine-grained access controls. However, these solutions also have a steeper learning curve and require more intricate configuration. Enterprise-level solutions find their niche in large organizations that value comprehensive security measures and the ability to tailor to their specific needs.</p>
+        <p>Enterprise-level solutions are meant for large organizations looking for a comprehensive suite of tools tailored to their unique security needs. However, these solutions also have a steeper learning curve and require more intricate configuration.</p>
 
         <h4>4.2.1 HashiCorp Vault</h4>
 
@@ -237,7 +239,7 @@
 
         <h4>4.2.2 AWS Secrets Manager</h4>
 
-        <p>AWS Secrets Manager is a proprietary AWS service for securely managing secrets. It offers features like automated secret rotation, access controls, and injection methods designed to enhance security and streamline operations related to microservices, CI/CD, and database credential management within the Amazon Web Services (AWS) environment.</p>
+        <p>AWS Secrets Manager is a proprietary AWS service for securely managing secrets. It offers features like automated secret rotation, access controls, and injection methods designed to enhance security and streamline operations related to microservices, CI/CD, and database credential management within the AWS environment.</p>
 
         <p>AWS Secrets Manager is a good fit for larger organizations that require advanced features and prefer a managed service. However, configuring the service, especially its automation features, can take time and effort. Additionally, there is no free tier.</p>
 
@@ -246,13 +248,13 @@
 
         <p>Embrasure is a self-hosted secrets manager for small teams prioritizing simplicity and advanced security features. It follows industry-standard tools and AWS best practices, employs IAM and DB authentication to ensure secure database access, and uses audit logs to document all server requests for potential security threats.</p>
 
-        <p>Embrasure is a cost-effective choice for smaller teams that have already integrated AWS into their workflow and want to maintain control over their secrets and infrastructure. All of Embrasure’s necessary AWS components are available on AWS’s Free Tier.</p>
+        <p>Embrasure is a cost-effective choice for smaller teams that have already integrated AWS into their workflow and want to maintain control over their secrets and infrastructure. All of Embrasure's components are available on the AWS Free Tier.</p>
 
         <img src="https://embrasure.s3.amazonaws.com/table_with_embrasure.png" alt="Table comparing lightweight, enterprise-level solutions, and Embrasure."/>
 
-        <h2 id="core-design-principles">5 Core Design Principles</h2>
+        <h2 id="design-principles">5 Design Principles</h2>
 
-        <p>Our primary goal with Embrasure is to provide a highly secure secrets manager without compromising usability or workflow efficiency. Embrasure prioritizes security, authentication and authorization, action monitoring, and user-friendly design while maintaining ease of use. These demos and GIFs walk you through common workflows supported by Embrasure.</p>
+        <p>Our primary goal with Embrasure is to provide a highly secure secrets manager without compromising usability or workflow efficiency. Embrasure prioritizes security, authentication and authorization, action monitoring, and user-friendly design while maintaining ease of use. These demos and GIFs walk through common workflows supported by Embrasure.</p>
 
         <p><u>Principles behind Embrasure’s Design</u></p>
 
@@ -264,17 +266,17 @@
 
         <p>To achieve this, our CLI has intuitive commands and a simple setup, which automates the process of building everything a user needs to manage their secrets effectively and with minimal complexity.</p>
 
-        <p>After just two CLI commands and minimal configuration, Embrasure is set up and ready to use on your own AWS infrastructure.</p>
+        <p>After just two CLI commands and minimal configuration, Embrasure is set up and ready to use on your AWS infrastructure.</p>
 
         <h4>Secret management</h4>
-        <p>Embrasure has all standard CRUD operations (Create, Read, Update, Delete) for interacting with secrets. All that is required is to enter the desired CLI command for the intended operation. For example, a user would simply type <code class="command">embrasure addSecret -n NAME -v VALUE</code> to add a new secret for the entire team.
+        <p>Embrasure has the standard CRUD operations (Create, Read, Update, Delete) for interacting with secrets. For example, a user would simply type <code class="command">embrasure addSecret -n NAME -v VALUE</code> to add a new secret for the entire team.
 
-        <img src="https://embrasure.s3.amazonaws.com/add_secret.gif" alt="add a secret"/>
+        <img src="https://embrasure.s3.amazonaws.com/addSecret.gif" alt="add a secret"/>
         </p>
 
         <h4>Secret Injection into a file</h4>
 
-        <p>Embrasure injects secrets into your program using a program wrapper.</p>
+        <p>Embrasure injects secrets into your application using a program wrapper.</p>
 
         <p>By entering <code class="command">embrasure run -file app.js</code> in your CLI, all necessary secrets will be grabbed and injected into your program environment.</p>
 
@@ -282,11 +284,11 @@
 
         <h3>Principle 2: Administrative Control and Ownership</h3>
 
-        <p>Embrasure is <strong>fully open-source and self-hosted</strong>, ensuring administrators have complete control and ownership of their secrets management instance and visibility of its architecture. By making the entire codebase accessible, administrators can deeply understand the system's inner workings. This transparency also allows for comprehensive audits, fostering trust within the user community.</p>
+        <p>Embrasure is <strong>fully open-source and self-hosted</strong>, ensuring administrators have complete control and ownership of their secrets management instance By making the entire codebase accessible, administrators can deeply understand the system's inner workings. This transparency also allows for comprehensive audits, fostering trust within the user community.</p>
 
         <h3>Principle 3: Security and Availability</h3>
 
-        <p>One of the significant challenges of security is that you can always be more secure. There will always be another adjustment or tool that organizations can implement to increase security, but each addition makes that system more and more complicated to understand or operate. We considered many alternatives and features to balance security, simplicity, and usability when designing Embrasure.</p>
+        <p>One of the significant challenges of security is that you can always be more secure. There will always be another adjustment or tool that organizations can implement to increase security, but each addition makes that system more and more complicated to understand or operate. When designing Embrasure, we considered many alternatives and features to balance security, simplicity, and usability.</p>
 
         <p>Embrasure minimizes its attack surface area to provide high-level security and reliable access to your secrets by leveraging established AWS standards for end-to-end encryption and dynamic scaling. Additionally, it relies on trusted AWS tools to scale with variable network demand and achieve high availability.</p>
 
@@ -294,13 +296,13 @@
 
         <p>Embrasure strictly adheres to the principle of least privilege, ensuring that it authenticates and authorizes all users. In short, our system secures secrets and makes them available only to authorized users. To achieve this, we must ensure that users are who they claim to be and are authorized to access those secrets.</p>
 
-        <p>Authentication occurs first in the process and confirms the user's identity.</p>
+        <p>Authentication occurs first in the process and confirms the user's identity. It aims to answer the question, "Who are you, and can you prove your identity?"</p>
 
         <p>Authentication involves verifying an individual's identity, usually using credentials such as usernames and passwords. It aims to answer the question, "Who are you, and can you prove your identity?"</p>
 
-        <p>By identifying users of our system, we can prevent unauthenticated access to our sensitive data and protect against malicious activities such as unauthorized changes, deletions, and data theft by malicious actors. Authentication also allows us to see what users use our system and map actions taken by those users. This is important for auditing purposes and investigating security incidents.</p>
+        <p>By identifying users of our system, we can prevent unauthenticated access to our sensitive data and protect against malicious activities such as unauthorized changes, deletions, and data theft by malicious actors. Authentication also allows us to see which users use our system and map actions taken by those users. This is important for auditing purposes and investigating security incidents.</p>
 
-        <p>When a user attempts to access a system, their identity must first be verified. If authentication is unsuccessful, the user is denied access. However, the next step is authorization if the user is authenticated successfully.</p>
+        <p>If authentication is unsuccessful, the user is denied access. However, the next step is authorization if the user is authenticated successfully.</p>
 
         <p>Authorization determines the resources the authenticated user can access and the actions they can perform. It involves granting or denying access to resources based on the user's identity. In simple terms, authorization answers the question, "What can you do and access based on who you are?".</p>
 
@@ -308,333 +310,333 @@
 
         <h4>User management</h4>
 
-        <p>Embrasure also allows for creating new AWS IAM users, setting their access level permissions, and deleting users, all with a few simple CLI commands. To add a new user with the ability to add new secrets, enter the command <code class="command">embrasure addUser -name NAME [-write]</code>, and then send their AWS credentials through whatever password-sharing service your team uses.</p>
+        <p>Embrasure can also create new AWS IAM users, setting their access level permissions, and delete users, all with a few simple CLI commands. To add a new user with the ability to add new secrets, enter the command <code class="command">embrasure addUser -name NAME [-write]</code>, and then send them their new AWS credentials through whatever password-sharing service your team uses.</p>
 
-        <img src="https://embrasure.s3.amazonaws.com/add_user.gif" alt="add a user"/>
+        <img src="https://embrasure.s3.amazonaws.com/addUser.gif" alt="add a user"/>
 
         <h4>Principle 5: User Action Monitoring</h4>
 
         <p>Embrasure records all user actions to provide comprehensive visibility into how secrets are accessed. This feature gives admins the tools to control and oversee their secrets, creating a secure operational environment.</p>
 
-        <p>Although we have taken great care to secure our confidential information, it is still essential to have a plan to deal with security breaches. Audit logs are critical as they provide valuable information and enable effective incident management.</p>
+        <p>Although we have taken great care to secure our secrets, it is still essential to have a plan to deal with security breaches. Audit logs are critical as they provide valuable information and enable effective incident management.</p>
 
-        <p>Audit logs are records of all interactions and events related to a secret manager, such as creating, reading, updating, and deleting secrets. They provide observability of events, enabling teams to monitor and review access to the secrets, see unauthorized attempts to access resources and investigate security incidents.</p>
+        <p>Audit logs are records of all interactions and events related to a secret manager, such as creating, reading, updating, and deleting secrets. They provide observability of events, enabling teams to monitor and review access to the secrets, see unauthorized attempts to access resources, and investigate security incidents.</p>
 
         <p>Regarding privileges, audit logs provide insight into when a user was given access and what actions the user did with those privileges. Essentially, audit logs provide a way for teams to see what happened and take the necessary steps to maintain accountability for an organization and rectify any mistakes.</p>
 
         <h2 id="architecture">6 Architecture</h2>
 
-        <p>Embrasure's architecture revolves around a straightforward yet powerful concept: a secure and centralized database of secrets accessible to everyone on a distributed team. However, this description glosses over many technical hurdles and design challenges that must be addressed to achieve such a product. It is merely the tip of the iceberg for the complex interactions underlying what appears to be Embrasure’s simple request-response cycle of typical HTTP interaction. </p>
+        <p>Embrasure's architecture revolves around a straightforward yet powerful concept: a secure and centralized database of secrets accessible to everyone on a distributed team. However, this description glosses over many technical hurdles and design challenges.</p>
 
-        <p>With that said, let us begin the deep dive into Embrasure’s architecture by starting with the first technical challenge of its design; how do you allow a distributed team to access their shared secrets anytime and anywhere?</p>
+        <p>With that said, let us begin the deep dive into Embrasure’s architecture by starting with the first technical challenge of its design: how do you allow a distributed team to access their shared secrets anytime and anywhere?</p>
 
         <h3>6.1 Utilizing Cloud Services</h3>
 
-        <p>Utilizing cloud service providers is a neat solution to the problem of achieving a highly accessible secrets manager. By building a cloud native tool, we can guarantee that so long as a user has an internet connection, they can access the resources they need from any machine.</p>
+        <p>Building a cloud native tool gives us a reliable way to build an application that is highly accessible to any user with an internet connection. This, however, raises the question of what cloud provider to use in the diverse cloud hosting field, or potentially making a cloud-agnostic tool packaged into containers.</p>
 
-        <p>This, however, raises the question of what cloud provider to use in the diverse cloud hosting field or potentially making a cloud-agnostic tool packaged into containers.</p>
-
-        <p>We decided to answer this question by building Embrasure on AWS primarily due to their authentication tools (more on that later) and their dominance of nearly a third of the cloud computing industry's market share.</p>
-
-        <img
-        src="https://embrasure.s3.amazonaws.com/req_res_cycle.png"
-        alt="request response cycle of Embrasure command"/>
-
-        <h3>6.2 Storing Information</h3>
-
-        <p>Now that a cloud provider has been chosen, we can move onto the matter of how to utilize a cloud service to store information. The storage question is answered with the simple and time-tested tool of a relational database.</p>
-
-        <h4>6.2.1 Database</h4>
-
-        <p>The cornerstone of Embrasure's architecture is its database: an AWS RDS (Relational Database Service) instance running PostgreSQL. Upon deployment, Embrasure spins up a dedicated RDS instance within an AWS Virtual Private Cloud (covered next). This database will house all stored secrets and encrypt all information stored (at-rest encryption)</p>
-
-        <h4>6.2.2 VPC</h4>
-
-        <p>The building block of cloud hosting through AWS is the Virtual Private Cloud (VPC). Functioning as an isolated container, the VPC will protect and connect the various pieces of Embrasure's backend, each endowed with a private IP address for identification and interconnection. Embrasure utilizes the VPC to house all of the infrastructure it uses for securely storing and delivering secrets.
-        </p>
+        <p>We answered this question by building Embrasure on AWS primarily due to its authentication tools (more on that later) and its popularity. Embrasure deploys itself directly to a user's AWS account as its own, isolated instance for each team.</p>
 
         <img
         src="https://embrasure.s3.amazonaws.com/instances.png"
         alt="self-contained Embrasure instances"/>
 
-        <p>Each team’s Embrasure instance operates in a self-hosted manner, establishing a distinct and secure environment for secrets management encapsulated within a unique Virtual Private Cloud on the administrator's AWS account.</p>
+        <h3>6.2 Storing Information</h3>
+
+        <p>Having chosen a cloud provider, we can begin thinking about how Embrasure will store secrets.</p>
+
+        <h4>6.2.1 Database</h4>
+
+        <p>The cornerstone of Embrasure's architecture is its database: an AWS RDS (Relational Database Service) instance running PostgreSQL. This database will house all stored secrets and encrypt all information stored (at-rest encryption)</p>
+
+        <h4>6.2.2 VPC</h4>
+
+        <p>AWS Virtual Private Cloud (VPC) is the cloud networking service that allows Embrasure to create and manage its own virtual network within the AWS cloud infrastructure. Functioning as an isolated container, the VPC will protect and connect the various pieces of Embrasure's backend, assigning them with private IP addresses for identification and interconnection while isolating them from the broader internet.</p>
+
+        <img
+        src="https://embrasure.s3.amazonaws.com/overview.png"
+        alt="request response cycle of Embrasure command"/>
 
         <h3>6.3 Limiting the threat surface</h3>
 
-        <p>So Embrasure has now achieved a highly accessible database in the cloud, but anyone who knows the database's IP address can access it. This lack of security is unacceptable for a secrets manager. This leads us to the next major technical design hurdle. We must now determine how we can limit access to the database to just the team using Embrasure.</p>
+        <p>Embrasure now has a highly accessible database in the cloud, but anyone who knows the database's IP address can access it. This lack of security is unacceptable for a secrets manager. This leads us to the next major technical design hurdle. We must now determine how we can limit access to the database to just the team using Embrasure.</p>
 
-        <h4>6.3.1 Security Group Firewall</h4>
+        <h4>6.3.1 Database Isolation within the VPC</h4>
 
-        <p>Now that a cloud provider has been chosen, we can move onto the matter of how to utilize a cloud service to store information. The storage question is answered with the simple and time-tested tool of a relational database.</p>
-        
-        <h5>Database</h5>
+        <p>Embrasure's design principles prioritize safeguarding the database against unintended access, a common concern in database management. Addressing the challenge of accounting for various potential ways to access the database, Embrasure takes a proactive stance by configuring its database to be private, which rejects outright any connection attempts originating from outside the Virtual Private Cloud (VPC) (see section VII, Diagram C8 for full architecture diagram).</p>
 
-        <p>The cornerstone of Embrasure's architecture is its database: an AWS RDS (Relational Database Service) instance running PostgreSQL. Upon deployment, Embrasure spins up a dedicated RDS instance within an AWS Virtual Private Cloud (covered next). This database will house all stored secrets and encrypt all information stored (at-rest encryption)</p>
+        <p>An additional isolation measure taken by Embrasure is placing all resources in the VPC into private subnets exclusively, which results in all AWS resources having a private IP address accessible within the VPC. These intentional measures effectively seal off the database and Embrasure’s inner workings, ensuring that interactions are limited to specific, secure channels within the controlled environment of the VPC. This strategic approach to database protection aligns with industry best practices.</p>
 
-        <h5>VPC</h5>
+        <h3>6.4 Networking to Communicate with the Database</h3>
 
-        <p>The building block of cloud hosting through AWS is the Virtual Private Cloud (VPC). Functioning as an isolated container, the VPC will protect and connect the various pieces of Embrasure's backend, each endowed with a private IP address for identification and interconnection. Embrasure utilizes the VPC to house all of the infrastructure it uses for securely storing and delivering secrets.</p>
+        <p>So, we have an isolated database in the cloud that can only communicate with resources inside the VPC and a VPC that only accepts the network traffic we want Embrasure to use, but there is still a gap here.</p>
 
-        <p>Each team’s Embrasure instance operates in a self-hosted manner, establishing a distinct and secure environment for secrets management encapsulated within a unique Virtual Private Cloud on the administrator's AWS account.
-        </p>
+        <p>We must now confront how a client outside of the VPC communicates with the isolated database containing all their information. Utilizing an HTTP API server as a communication middleman within the VPC fits nicely to solve this database access challenge.</p>
 
-        <h3>6.4 Limiting the threat surface</h3>
+        <h4>6.4.1 AWS API Gateway and AWS Lambda</h4>
 
-        <p>So Embrasure has now achieved a highly accessible database in the cloud, but anyone who knows the database's IP address can access it. This lack of security is unacceptable for a secrets manager. This leads us to the next major technical design hurdle. We must now determine how we can limit access to the database to just the team using Embrasure.</p>
+        <p>In order to understand how Embrasure’s backend communication works, we need to quickly refer to its CLI commands.</p>
 
-        <h4>6.4.1 Security Group Firewall</h4>
+        <p>Under the hood, all of Embrasure's CLI commands send a request to the API server within Embrasure’s VPC that communicates with the database. A custom-built middleware transforms the CLI commands into HTTP requests with the headers required to reach the server.</p>
 
-        <p>Security Groups are the AWS equivalent of firewalls and specifically control network communication. They act as a barrier between a private network and the public internet by allowing or restricting forms of network traffic into and out of the VPC.</p>
-
-        <p>Network security best practice suggests limiting all communication except what is explicitly used by your program to cut off any unexpected exploits, which Embrasure adheres to. Embrasures Security Group exclusively allows HTTPS (see section VI: Networking to Communicate with the Database for more on HTTPS) traffic to Port 5432 into the VPC from any source IPv4 address.</p>
-
-        <p>Allowing any source IP address is meant to provide distributed teams the freedom to connect from any working space rather than a few known offices to increase the availability of Embrasure.</p>
+        <p>Embrasure leverages AWS API Gateway and AWS Lambda built during deployment to act as this communications intermediary between a user's Embrasure CLI commands and Embrasure's central database.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/traffic.png"
-        alt="Embrasure instances only allow traffic to Port 5432"/>
-
-        <h4>6.4.2 Database Isolation within the VPC</h4>
-
-        <p>Embrasure's design principles prioritize safeguarding the database against unintended access, a common concern in database management. Addressing the challenge of accounting for various potential ways to access the database, Embrasure takes a proactive stance by configuring its database to private, which rejects outright any connection attempts originating from outside the Virtual Private Cloud (VPC) (see section VII, Diagram C8 for full architecture diagram).</p>
-
-        <p>An additional isolation measure taken by Embrasure is exclusively placing all resources in the VPC into private subnets, which results in all AWS resources exclusively having a private IP address only accessible within the VPC. These intentional measures effectively seal off the database and Embrasures inner workings, ensuring that interactions are limited to specific, secure channels within the controlled environment of the VPC. This strategic approach to database protection aligns with industry best practices.</p>
-
-        <h3>6.5 Networking to Communicate with the Database</h3>
-
-        <p>So we have an isolated database in the cloud that can only communicate with resources inside the VPC and a VPC that only accepts the network traffic we want Embrasure to use, but there is still a gap here. We now must confront the issue of how does a client outside of the VPC communicate with the isolated database containing all of their information? Of the standard solutions secret managers use to access their stored secrets (SDK, API server, Program Wrapper), utilizing an HTTP API server as a communication middleman within the VPC fits nicely to solve the database access challenge.</p>
-        
-        <h4>6.5.1 AWS API Gateway and AWS Lambda Middleman</h4>
-
-        <p>Under the hood, all of Embrasure's CLI commands call an API server within Embrasure’s VPC that communicates with the database. Leveraging custom-built middleware, the CLI commands are converted to an HTTP request with added headers including all information required to clear the firewall and reach the API server within Embrasure’s VPC. Embrasure leverages AWS API Gateway and AWS Lambda built during deployment to act as this communications middleman between a user's Embrasure CLI commands and Embrasure's central database.</p>
+        src="https://embrasure.s3.amazonaws.com/request5.png"
+        alt="Request going from the client, to the API Gateway, then Lambda API Server and finally Secrets Database"/>
 
         <h5>API Gateway</h5>
 
-        <p>The API Gateway serves as the conduit for secure communication with managed API endpoints. These endpoints, secured by TLS to ensure HTTPS communication, form the bridge through which users interact with Embrasure. It provides a well-organized and standardized approach to API management.</p>
+        <p>The API Gateway is the conduit for secure communication with managed API endpoints. These endpoints, secured by TLS to ensure HTTPS communication, form the bridge through which users interact with Embrasure. It provides a well-organized and standardized approach to API management. </p>
 
-        <p>Using TLS (Transport Layer Security) and HTTPS (Secure HTTP) allow all API calls made by Embrasure to be encrypted in transit, guaranteeing that the sensitive information contained in each request-response cycle cannot be intercepted and read in transit.</p>
+        <p>Using TLS (Transport Layer Security) and HTTPS (Secure HTTP) allows all API calls made to Embrasure to be encrypted in transit, guaranteeing that the sensitive information contained in each request-response cycle cannot be intercepted and read in transit.</p>
 
-        <p>Embrasure's API endpoints are designed under standard RESTful principles to enhance usability and maintainability. Each endpoint is tailored to facilitate interactions with specific resources, offering a structured interface for managing secrets, user access, and other relevant functionalities. The RESTful design ensures clarity in the communication protocol, simplifying the process for developers to understand and leverage the API effectively.</p>
+        <p>Embrasure's API endpoints are designed using standard RESTful principles to enhance usability and maintainability. Each endpoint is tailored to facilitate interactions with specific resources, offering a structured interface for managing secrets, user access, and other relevant functionalities.</p>
 
-        <p>API endpoints are utilized for all embrasure interactions, of which three categories exist. CRUD operations for all secrets, CRUD operations for all users (only admin has permissions for these endpoints), and read operation for access logs (only admin has permission for this endpoint).</p>
+        <p>The RESTful design ensures clarity in the communication protocol, simplifying the process for developers to understand and leverage the API effectively.</p>
+
+        <p>API endpoints are utilized for all Embrasure interactions, of which three categories exist. CRUD operations for secrets, CRUD operations for users (admin only), and read operations for access logs (admin only).</p>
 
         <h5>Lambda</h5>
 
-        <p>Requests to Embrasure’s API Gateway are directed to and processed by Lambdas, but what is a Lambda? AWS Lambda, a serverless and event-driven compute service, eliminates the need to manage servers or backend resources. They dynamically provision resources, allowing for seamless scaling based on processing requirements(see section VIII: tradeoffs, for comparison of alternate solutions considered).</p>
+        <img
+        src="https://embrasure.s3.amazonaws.com/request4.png"
+        alt="API Gateway passing request over to Lambda API Server"/>
 
-        <p>Now that we understand what a Lambda is, we can discuss the design choices orchestrating Embrasure’s API Gateway to receive secure HTTPS requests from the CLI. The setup involves adding custom-generated user identification headers (more on that in next section) to each request sent to Embrasure’s Lambdas. Each Lambda assumes the role of a vigilant listener, empowered with the necessary permissions to authenticate incoming requests with AWS IAM and communicate with the database.</p>
+        <p>Requests to Embrasure’s API Gateway are directed to and processed by Lambdas, but what is a Lambda?</p>
 
-        <p>Its responsibilities include converting requests into the requisite SQL queries, querying Embrasure's central database, and processing the returned response.</p>
+        <p>AWS Lambda, a serverless and event-driven compute service, eliminates the need to manage servers or backend resources. The Lambda dynamically provision resources, allowing for seamless scaling based on processing requirements. </p>
 
-        <p>The orchestrated workflow ensures that the Lambda effectively serves as an intermediary, connecting the secure CLI command execution to the operations within Embrasure's central database. The user receives the processed response through this Lambda, completing the seamless and secure transaction initiated by the Embrasure CLI command.</p>
+        <p>Now that we understand what a Lambda is, we can discuss the design choices orchestrating Embrasure’s API Gateway to receive secure HTTPS requests from the CLI. The setup involves adding custom-generated user identification headers (more on that in next section) to each request sent to Embrasure’s Lambdas. </p>
 
-        <p>Converting user inputs to API calls while banning direct database access ensures there is no risk of database exposure, and user queries are all sanitized. These two characteristics of Embrasure combined with firewalls create a simple yet very secure barrier around an Embrasure team’s secrets. The final layer of Embrasure's security, user authentication, will be explored next.</p>
+        <p>Each Lambda assumes the role of a vigilant listener, empowered with the necessary permissions to authenticate incoming requests with AWS IAM and communicate with the database.</p>
 
-        <h3>6.6 Identifying and Authenticating Users</h3>
+        <p>Its responsibilities include converting requests into the requisite SQL queries via Sequelize ORM, querying Embrasure's central database, and processing the returned response.</p>
 
-        <p>During our analysis, Embrasure has become quite fleshed out. We have an isolated, cloud hosted database that users can access their stored information from utilizing an API server, but a design challenge we previously alluded to remains unanswered. Requests made by Embrasure CLI commands are supposed to be authenticated to confirm that the user sending the request is cleared to access whatever they are trying to access. So, let us now break down how exactly Embrasure confirms users are who they say they are.</p>
+        <img
+        src="https://embrasure.s3.amazonaws.com/lambda_db.png"
+        alt="Lambda API Server sending SQL query to Secrets Database"/>
 
-        <p>User authentication is one of the most challenging aspects of security to get right. In Embrasure, authentication is handled by AWS’s Identity and Access Management (IAM) service. IAM allows us to create, manage, and authenticate users within an AWS account. Each IAM user has a corresponding user account on the database. It is through this database user account that we can manage authorization for the user and what they are permitted to do on that database.</p>
+        <p>The orchestrated workflow ensures that the Lambda serves as an intermediary, connecting the secure CLI command execution to the operations within Embrasure's central database. The user receives the processed response through this Lambda, completing the transaction initiated by the Embrasure CLI command.</p>
+
+        <p>Converting user inputs to API calls while banning direct database access ensures no risk of database exposure, and user queries are all sanitized. These two characteristics of Embrasure combined create a simple yet very secure barrier around an Embrasure team’s secrets. We’ll explore the final layer of Embrasure's security, user authentication, next.</p>
+
+        <h3>6.5 Identifying and Authenticating Users</h3>
+
+        <p>Embrasure has now become quite fleshed out. We have an isolated, cloud-hosted database where users can access stored information using an API server. However, a design challenge we alluded to still needs to be answered. Requests made by Embrasure CLI commands are supposed to be authenticated to confirm that the user sending the request is cleared to access whatever they are trying to access. So, let us now break down how exactly Embrasure ensures users are who they say they are.</p>
+
+        <p>User authentication is one of the most challenging security aspects to get right. Embrasure handles authentication with AWS’s Identity and Access Management (IAM) service. IAM allows us to create, manage, and authenticate users within an AWS account. Each IAM user has a corresponding user account stored on the database. Through this database user account, we can manage authorization for the user and what they are permitted to do on that database.</p>
+
+        <img
+        src="https://embrasure.s3.amazonaws.com/request2.png"
+        alt="Request with necessary request headers sent to API Gateway"/>
 
         <p>As mentioned, when a user runs an Embrasure CLI command, an HTTPS request is sent to the corresponding endpoint on our API gateway connected to our Lambda. This request includes headers that will be used in the user's authentication process and will establish an SSL connection to the database, which is required for IAM authentication. Some of these included headers in the request are the user's IAM username and a generated IAM authentication token.</p>
 
-        <p>AWS IAM uses the access keys stored in your .aws folder to generate database authentication tokens, eliminating the need to store database user credentials. These access credentials are the basis for generating an IAM authentication token—a distinct string of characters requested and generated by Amazon RDS.</p>
+        <p>AWS IAM uses the access keys stored in a user’s.aws folder to generate database authentication tokens, eliminating the need to store database user credentials. These access credentials are the basis for generating an IAM authentication token—a distinct string of characters requested and generated by Amazon RDS.</p>
 
-        <p>In lieu of a password, the IAM authentication token is used and dynamically generated. Because of this, the token is not stored anywhere, forgoing the need to store database user passwords anywhere. In addition, authentication tokens have a lifespan of 15 minutes, so you do not need to enforce periodic password changes for your database users (see section VIII: tradeoffs for comparison of IAM auth token vs Multi-Factor Authentication).</p>
+        <p>In place of a password, the IAM authentication token is used and dynamically generated. Because of this, the token is not stored anywhere, forgoing the need to store database user passwords. In addition, authentication tokens have a lifespan of 15 minutes, so you do not need to enforce periodic password changes for your database users.</p>
+
+        <img
+        src="https://embrasure.s3.amazonaws.com/request_auth.png"
+        alt="Request getting verified by AWS IAM and database"/>
 
         <p>Embrasure uses the signed IAM Authentication token to verify users rather than a traditional database username and password. Once the user’s request containing their IAM username and IAM authentication token reaches the API server, those credentials are used to connect to the PostgreSQL database. The database checks that the credentials are valid using IAM and that the user has an attached IAM policy that authorizes them to connect to the database.</p>
 
-        <p>Once connected to the database, privileges defined on the PostgreSQL database authorize what actions the user can perform on the database, such as creating, reading, updating, and deleting secrets. These permissions are applied to the user by the admin using the Embrasure CLI. Once the database query completes, a response is made and sent back to the user’s client.</p>
+        <p>Once connected to the database, privileges defined on the PostgreSQL database authorize what actions the user can perform on the database, such as creating, reading, updating, and deleting secrets. These permissions are applied to the user by the admin using the Embrasure CLI. Once the database query completes, a response is made and sent back to the user.</p>
 
-        <h3>6.7 Tracking Access to Stored Secrets</h3>
+        <h3>6.6 Tracking Access to Stored Secrets</h3>
 
-        <p>There is now one final technical hurdle Embrasure sets out to solve that we have not yet discussed. That is the challenge of keeping a record of every attempt to access the secrets stored by Embrasure. We considered implementing potentially costly tools provided by AWS, finding an open-source access log tool that fit our architecture, or building an access audit log from scratch.</p>
+        <p>There is now one final technical hurdle Embrasure sets out to solve. That is the challenge of keeping a record of every attempt to access the secrets stored by Embrasure. We considered implementing potentially costly tools provided by AWS, finding an open-source access log tool that fit our architecture, or building an access audit log from scratch.</p>
 
-        <p>Eventually, we settled on building our own access log tool. Since all traffic to Embrasure goes through a single point of entry - the predefined endpoints on the API server, this provided us with a single place to monitor actions. We simply track and look at the traffic coming in and out of this single point of entry.</p>
+        <p>Eventually, we settled on building our access log tool. Since all traffic to Embrasure goes through a single point of entry - the predefined endpoints on the API server, this provided us with a single place to monitor actions. We simply track and look at the traffic coming in and out of this single point of entry.</p>
 
-        <p>When a request reaches our API server, various middleware processes it during the request-response cycle. Certain middleware looks at the request headers and uses the information contained in the headers to authenticate the user. If authentication is successful and the user who sent the request has the necessary authorizations, the request is processed by an additional middleware to carry out that request.</p>
+        <img
+        src="https://embrasure.s3.amazonaws.com/request_response.png"
+        alt="Request and response cycle flow map with audit log being created"/>
+
+        <p>When a request reaches our API server, various middleware process it during the request-response cycle. Particular middleware looks at the request headers and uses the information contained in the headers to authenticate the user. If authentication is successful and the user who sent the request has the necessary authorizations, the request is processed by an additional middleware to carry out that request.</p>
         
-        <p>A response with the appropriate HTTP status code is sent, and a log is created and stored in a logs table in the database (see section VIII: tradeoffs for audit log solution comparison to AWS Cloud Watch). Alternatively, if authentication or authorization is unsuccessful, that particular request is routed to a different middleware that will send the appropriate HTTP status code and create a log for that request, which is stored in a logs table (see section VIII: tradeoffs for technical challenges associated with our audit log implementation).</p>
+        <p>A response with the appropriate HTTP status code is sent, and a log is created and stored in a logs table in the database. Alternatively, if authentication or authorization is unsuccessful, that particular request is routed to a different middleware that will send the appropriate HTTP status code and create a log for that request, which is also stored in a logs table.</p>
 
-        <p>Each entry in the audit log contains information about the actor who initiated the request, the IP address the request was made from, the request type, the resource route, the timestamp, the request authentication status, the request authorization status, and the HTTP status code.</p>
+        <p>Each entry in the audit log contains information about the user who initiated the request, the IP address the request was made from, the request type, the resource route, the timestamp, the request authentication status, the request authorization status, and the HTTP status code.</p>
 
-        <p>Audit logs are written to the database through a dedicated logs worker. Because our database requires IAM authentication to connect with it, the logs worker itself has to generate IAM authentication tokens like any other non-admin user. Additionally, the logs worker has a corresponding user account defined on the database itself and is given the necessary privileges to create records on the database level.</p>
+        <p>Audit logs are written to the database through a dedicated logs worker. Because our database requires IAM authentication to connect with it, the logs worker itself has to generate IAM authentication tokens like any other non-admin user. Additionally, the logs worker has a corresponding user account defined on the database and the necessary privileges to create records on the database level.</p>
 
-        <h2 id="commands-and-request-lifecycle">7 Commands and Request Lifecycle</h2>
+        <h2 id="request-lifecycle">7 Request Lifecycle</h2>
 
         <p>Now that we’ve gone over the many pieces of Embrasure’s architecture, let’s look at the complete path an Embrasure command takes from request to response for a non-admin user adding a new secret.</p>
 
-        <p>AWS IAM uses the region, host, database port, IAM username, and AWS access keys sent over HTTPS to generate an IAM authentication token that gets sent back to the user.</p>
+        <p>At the start of every request, AWS IAM uses credentials sent over HTTPS to generate an IAM authentication token that gets sent back to the user.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/auth_req_res_cycle.png"
+        src="https://embrasure.s3.amazonaws.com/iam_auth.png"
         alt="IAM authentication request response cycle"/>
 
-        <p>User enters command ‘Embrasure addSecret -n databasePort -v 5432. The request is decrypted upon reaching the secure endpoint and then checked against the firewall to see if it can enter VPC.</p>
+        <p>A user enters the command <code class="command">Embrasure addSecret -n databasePort -v 5432</code>. Upon reaching the secure endpoint, the request is decrypted and checked against the firewall to see if it can enter VPC.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/req_firewall_gateway.png"
-        alt="Embrasure requests go through a security group firewall before reaching the API Gateway"/>
+        src="https://embrasure.s3.amazonaws.com/request_body.png"
+        alt="A request is sent to the API Gateway"/>
 
         <p>The request is then passed along to the Lambda server, which processes the specifics of the request.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/gateway_lambda.png"
+        src="https://embrasure.s3.amazonaws.com/request3.png"
         alt="API Gateway passes the request to the Lambda server"/>
 
-        <p>Middleware that is a part of the API server checks headers of network requests for information like the user name and authentication token to validate the identity of the request sender.</p>
+        <p>A middleware checks headers of network requests for information like the user name and authentication token to validate the identity of the request sender.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/iam_auth_check.png"
+        src="https://embrasure.s3.amazonaws.com/api_auth2.png"
         alt="Lambda server checks that the IAM username, db host and port, and auth token are valid on every request."/>
 
-        <p>Once the request is fully authenticated, it is processed by the Lambda, converted into its associated database query and sent to the database.</p>
+        <p>Once the request is fully authenticated, it is processed by the Lambda, converted into its associated database query, and sent to the database.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/lambda_query.png"
+        src="https://embrasure.s3.amazonaws.com/lambda_orm_db.png"
         alt="Lambda server converts request to query and connects to the database."/>
 
-        <p>The database performs one final check to confirm the user is authorized to perform that operation on the database and if validated, the operation is performed.</p>
+        <p>The database performs one final check to confirm the user is authorized to execute that operation on the database, and if validated, the operation is performed.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/secrets_permissions.png"
+        src="https://embrasure.s3.amazonaws.com/db_auth.png"
         alt="Database confirms that users have the required authorization."/>
 
-        <p>The completed response is now sent back through Embrasure to the client’s machine.</p>
+        <p>The completed response is returned to the client’s machine through Embrasure.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/response.png"
-        alt="Response passing back through database, lambda, gateway, and firewall to user."/>
+        src="https://embrasure.s3.amazonaws.com/response2.png"
+        alt="Response passing back through database, Lambda, and API Gateway to user."/>
 
-        <p>Audit log built into lambda now adds a new line to the database with all the information of the request.</p>
+        <p>The audit log middleware adds a new line to the database with all the request information.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/log_created_users.png"
+        src="https://embrasure.s3.amazonaws.com/log1.png"
         alt="Audit log is created and stored in logs table."/>
 
         <p>Here is a look at the entire architecture as a unit.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/overview.png"
-        alt="Detailed overview of Embrasure request response cycle."/>
+        src="https://embrasure.s3.amazonaws.com/overview2.png"
+        alt="Overview of Embrasure request response cycle."/>
 
         <h4>Workflow of creating a new non-admin user</h4>
 
-        <p>In another workflow, we will see how a new developer has joined the team, and the admin then uses a single terminal command to add them as a user to Embrasure.</p>
+        <p>In another workflow, we will see how an admin can use a single terminal command to add a new developer on the team as a user to Embrasure.</p>
 
         <p>Embrasure leverages AWS IAM to create new users, generate AWS access keys, and add the appropriate policies that permit the new user to connect to the database.</p>
 
-        <p>From the terminal, the admin runs <code class="command">Embrasure addUser -n bob</code></p>
+        <p>The admin runs <code class="command"> Embrasure addUser -n bob </code> from the terminal. This triggers a series of steps under the hood to create a corresponding IAM and database-level user.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/new_user_req.png"
+        src="https://embrasure.s3.amazonaws.com/user_created.png"
         alt="A request is sent to AWS IAM to create a new user."/>
 
-        <p>Request is sent to AWS IAM and an IAM user, “bob” is created.</p>
+        <p>The request is sent to AWS IAM, and an IAM user, “bob,” is created.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/user_group.png"
+        src="https://embrasure.s3.amazonaws.com/iam_auth_group.png"
         alt="A request is sent to AWS IAM to add the new user to the 'embrasure-developer' user group."/>
 
-        <p>The new user is then added to the `embrasure-developer` IAM user group.</p>
+        <p>The new user is added to the <code>embrasure-developer</code> IAM user group.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/req_iam_keys.png"
+        src="https://embrasure.s3.amazonaws.com/access_keys.png"
         alt="Access keys are generated for the new user."/>
 
         <p>AWS access keys are then generated for the new user.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/policy_created.png"
+        src="https://embrasure.s3.amazonaws.com/policies1.png"
         alt="Database policies are created and attached to the new user."/>
 
         <p>IAM policies are created and attached to the new IAM user created.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/user_req.png"
+        src="https://embrasure.s3.amazonaws.com/request1.png"
         alt="A request's journey through the firewall and API Gateway to the Lambda API Server."/>
 
-        <p>After AWS IAM processes are finished and “bob” is added as an IAM user with the appropriate IAM policies attached to him, a post request is sent from the admin’s CLI to the API gateway endpoint to add “bob” to the database.</p>
+        <p>After AWS IAM processes are finished and “bob” is added as an IAM user with the appropriate IAM policies attached to him, a POST request is sent to the API gateway endpoint to add “bob” to the database.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/req_headers_check.png"
+        src="https://embrasure.s3.amazonaws.com/api_auth.png"
         alt="Request headers are used to authenticate the admin"/>
 
-        <p>Middleware that is a part of the API server checks headers of network requests for information like the username and password/authentication token to validate the identity of the request sender.</p>
+        <p>A middleware that is a part of the API server checks headers of network requests for information like the username and password/authentication token to validate the identity of the request sender.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/lambda_query.png"
+        src="https://embrasure.s3.amazonaws.com/api_auth1.png"
         alt="Lambda converts the request to a SQL query and connects to the database"/>
 
         <p>Once the request is fully authenticated, it is processed by the Lambda, converted into its associated database query, and sent to the database.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/new_user_permissions.png"
+        src="https://embrasure.s3.amazonaws.com/db_auth1.png"
         alt="Database confirms the user's authorization and adds a new user to the users table"/>
 
-        <p>Database performs one final check to confirm the user is authorized to perform that operation on the database and if validated, the operation is performed.</p>
+        <p>The database does one final check to confirm the admin is authorized to add a new user. If validation is successful, a new user is created and stored in the database’s users table.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/admin_res.png"
+        src="https://embrasure.s3.amazonaws.com/response.png"
         alt="Response passes back through the architecture of a database, Lambda, API Gateway and  security group firewall to the admin."/>
 
-        <p>Completed response is now sent back through Embrasure to the client’s machine.</p>
+        <p>The completed response is now sent back to the admin.</p>
 
         <img
-        src="https://embrasure.s3.amazonaws.com/log_created_secrets.png"
+        src="https://embrasure.s3.amazonaws.com/log2.png"
         alt="A new log is created for the request and stored in the logs table."/>
 
-        <p>Audit log middleware in the API server now adds a new line to the database with all the information of the request that a request was sent to the /post route that handles adding a new user to the database.</p>
+        <p>Audit log middleware in the API server now adds a new line to the database, recording that a request was sent to the POST route that handles adding a new user to the database.</p>
 
         <h2 id="trade-offs">8 Trade-Offs</h2>
 
-        <p>As with all projects, some trade-offs come with the design choices made when developing Embrasure.</p>
+        <p>As with all projects, we made some trade-offs that come with the design choices when developing Embrasure.</p>
 
         <h3>8.1 Tradeoffs of using an AWS infrastructure</h3>
 
-        <p>Embrasure relies heavily on AWS tools to abstract away setup and user authentication complexities from all users except the Embrasure administrator. This reliance on AWS comes with the trade-off that the administrator must have some level of familiarity with AWS services, particularly AWS IAM.</p>
+        <p>Embrasure heavily relies on AWS tools to simplify the setup and user authentication process for all users except the Embrasure administrator. However, this reliance on AWS means that the administrator must understand AWS services well, particularly AWS IAM.</p>
 
-        <p>Embrasure’s usage of AWS also creates a vendor dependency. It means that even if an organization decides to move away from AWS, Embrasure instances will remain tied to AWS infrastructure. Therefore, it is essential to consider this reliance as Embrasure may pose as an anchor if an organization tries to migrate away from AWS. </p>
+        <p>It's important to note that Embrasure's usage of AWS creates a vendor dependency. This means that even if an organization decides to move away from AWS, Embrasure instances will remain tied to AWS infrastructure. Therefore, it's crucial to consider this reliance as Embrasure may pose as an anchor if an organization tries to migrate away from AWS.</p>
 
-        <p>We considered other cloud providers, such as GCP and Microsoft Azure, as well as creating a secrets manager that could be used across different cloud platforms and shipped in docker containers. However, we ultimately decided to build our suite of tools within the AWS ecosystem due to their dominant market share in cloud computing (34% as of 2022) and the additional scope creep tied to building a cloud-agnostic tool.</p>
+        <p>We did consider other cloud providers, such as GCP and Microsoft Azure. We even considered creating a secrets manager that could be used across different cloud platforms and shipped in Docker containers. However, we ultimately decided to build our suite of tools within the AWS ecosystem due to their dominant market share in cloud computing (34% as of 2022) and the additional complexity of building a cloud-agnostic tool.</p>
 
         <h3>8.2 Tradeoffs of using a Lambda</h3>
 
-        <p>During development, we considered an AWS EC2 (Elastic Compute Cloud) instance to house the API Server, but ultimately, we decided to use an AWS Lambda. An EC2 instance would have been continually running and listening for any API calls, which would fit Embrasure’s high availability goals nicely. However, this would incur costs for computing resources used during potential downtime and add complexity to managing the EC2’s backend infrastructure.</p>
+        <p>During the development phase, we considered using an AWS EC2 (Elastic Compute Cloud) instance to host the API Server. However, we ultimately decided to use an AWS Lambda instead. While an EC2 instance would have been ideal for Embrasure's high availability goals, it would have incurred costs for computing resources during potential downtime and added complexity to managing the EC2's backend infrastructure.</p>
 
-        <p>Lambdas, by comparison, are event-triggered and would only be activated when demand is present. With Lambdas, you only pay for the compute time you use. Additionally, AWS Lambda runs your code on high-availability infrastructure and performs all the management and maintenance of compute resources, so you don’t have to. Thus, using Lambdas has the benefit of lowering costs incurred at the scale of small teams and requiring less infrastructure management.</p>
+        <p>On the other hand, Lambdas are event-triggered and only activate when a request is sent, meaning you only pay for the computing time you use. AWS Lambda runs your code on high-availability infrastructure while performing all the management and maintenance of computing resources. This makes it easier to manage and lowers costs incurred at the scale of small teams.</p>
 
-        <p>It's important to note these benefits also come with a tradeoff. Lambdas automatically spin down when not in use, meaning if demand falls and then spikes back up, Lambdas will require spin-up time, increasing latency. Ultimately, we decided that Lambda's simplicity and cost savings outweighed any temporary latency increase.</p>
+        <p>However, it's important to note that Lambdas automatically spin down when not in use, which means that if demand falls and spikes back up, Lambdas will require spin-up time, increasing latency. Despite this tradeoff, we decided that Lambda's simplicity and cost savings outweighed any temporary latency increase.</p>
 
         <h3>8.3 Tradeoffs regarding user authentication</h3>
 
-        <p>AWS IAM handles user authentication in Embrasure. The decision to go with AWS IAM over other authentication solutions stems from the inherent complexities and challenges of securing user authentication.</p>
+        <p>AWS IAM handles user authentication in Embrasure. We chose AWS IAM over other authentication solutions because of the complexities and challenges of securing user authentication. Since our entire infrastructure is built on AWS and relies on an AWS account, it made sense to integrate user authentication seamlessly through AWS IAM into Embrasure.</p>
 
-        <p>Given that our entire infrastructure is built on AWS and relies on an AWS account, it seemed logical to integrate user authentication seamlessly through AWS IAM into Embrasure. Opting for a non-AWS authentication solution in our AWS-centric infrastructure would have introduced unnecessary complexities, which we aimed to avoid.</p>
+        <p>Opting for a non-AWS authentication solution in our AWS-centric infrastructure would have introduced unnecessary complexities, which we aimed to avoid.</p>
 
-        <p>Moreover, the integration with AWS IAM came at no additional cost or changes to our existing infrastructure while being a time-tested, flexible authentication tool, making it a straightforward and efficient choice.</p>
+        <p>Moreover, the integration with AWS IAM came at no additional cost or changes to our existing infrastructure while being a time-tested, flexible authentication tool.</p>
 
-        <p>Utilizing Multi-Factor Authentication with AWS Secure Token Service (STS) was considered during the development of Embrasure. MFA with STS would provide more security by requiring two devices to confirm user identity but at the cost of a longer user experience through waiting for a one-time password (OTP) per request-response cycle or per Embrasure usage session. IAM Auth token provides a more natural user experience by automating this authentication behind the scenes but at the cost of if the user’s AWS Secret access key is leaked, the account is completely compromised.</p>
+        <p>We also considered implementing Multi-Factor Authentication through AWS Secure Token Service (STS) to enhance security. However, MFA with STS would require two devices to confirm user identity, resulting in a less seamless user experience. Users would need to wait for a one-time password (OTP) for each request-response cycle or Embrasure usage session.</p>
 
-        <p>We eventually decided the comparative security vulnerability tradeoff was acceptable for the gain in user experience, since simple user experience was one of the guiding design principles of Embrasure.</p>
+        <p>On the other hand, the IAM Auth token offers a more user-friendly experience by automating authentication in the background. However, this comes with the risk of complete account compromise if the user's AWS Secret access key is exposed.</p>
+
+        <p>We eventually decided that the comparative security vulnerability tradeoff was acceptable for the gain in user experience since a simple user experience was one of the guiding design principles of Embrasure.</p>
 
         <h3>8.4 Tradeoffs regarding audit logs</h3>
 
-        <p>Logs are created and stored indefinitely for every request, even invalid requests sent to the API server. Suppose someone knows at least one of the API server’s endpoints. In that case, they can continually spam requests to that endpoint, constantly adding logs to the audit logs table and potentially overloading the database. </p>
+        <p>When considering options for implementing audit log functionality, we evaluated AWS CloudWatch as an alternative to Amazon RDS for PostgreSQL. We carefully considered factors such as pricing, integration with the existing architecture, and the level of added complexity before making a decision.</p>
 
-        <p>In addition, audit log functionality relies on observing limited entry points into the DB. If additional functionality is needed by a team that uses Embrasure, they would have to build and add those routes to the API server. These new routes would also include adding additional API endpoints.</p>
+        <p>CloudWatch offers seamless integration with a wide range of AWS services, providing a unified platform for monitoring metrics, setting alarms, and responding to real-time incidents. However, this convenience comes at a cost of both financial and technical complexity.</p>
 
-        <p>Furthermore, audit logs are implemented as one of the last middleware in the API server during the request-response cycle, so depending on what the new route does, the middleware may need to be modified. All this would be needed to add audit logging to any new routes. </p>
+        <p>Although CloudWatch provides the first 5GB of data per month free of charge, there are additional charges of $0.5 per GB and $0.12 per GB for log scanning to eliminate sensitive data.</p>
 
-        <p>When deciding between Amazon RDS for PostgreSQL and CloudWatch for storing audit logs, we considered three main factors. </p>
+        <p>On the other hand, Amazon RDS for PostgreSQL offers 20 GB of free storage with an additional 20 GB of storage for backups on the AWS Free Tier plan. Furthermore, we plan to add functionality for advanced querying of logs, which a relational database like Postgres is built for. For these reasons, we decided against using CloudWatch to store our logs.</p>
 
-        <p>Firstly, Amazon RDS allows for indefinite storage, while CloudWatch only allows for storage up to 90 days. </p>
+        <p>Our second major decision concerning audit logs was whether to use an already-built solution or make our own. After careful consideration, we opted to construct our own audit log tool. This decision was driven by straightforward integration into the existing architecture, lower overall costs, reduced administrative complexity, and heightened security for stored information. Nevertheless, this choice comes with its own set of trade-offs.</p>
 
-        <p>Secondly, RDS offers more powerful log analysis capabilities with SQL queries. </p>
+        <p>Our audit log tool records all requests made to the API server, including invalid ones. However, this design has a potential risk. If someone with knowledge of an API endpoint decides to flood the server with spam requests, it could create a large number of logs, leading to increased storage costs.</p>
 
-        <p>Finally, RDS provides better security measures with fine-grained access control and robust encryption for data at-rest and in-transit.</p>
-
-        <p>On the other hand, CloudWatch seamlessly integrates with various AWS services, providing a unified platform for monitoring metrics, setting up alarms, and responding to incidents in real-time incidents in real-time.</p>
+        <p>Additionally, the audit log functionality relies on monitoring specific entry points into the database. If a team using Embrasure requires additional functionality, they must independently develop and integrate new routes into the API server. This process introduces the need to create and manage additional API endpoints, adding complexity to the overall system.</p>
 
         <h2 id="future-work">9 Future Work</h2>
 
@@ -652,7 +654,7 @@
 
         <h3>9.3 Integration for Existing VPCs</h3>
 
-        <p>Embrasure’s architecture construction currently relies on the creation of a new, empty VPC to prevent conflicts with existing resources during initialization. We plan to rework Embrasure’s initialization to optionally allow for the creation and networking of all resources required by Embrasure into an existing VPC as well as a newly created VPC.</p>
+        <p>Embrasure’s architecture construction currently relies on creating a new, empty VPC to prevent conflicts with existing resources during initialization. We plan to rework Embrasure’s initialization to optionally allow for the creation and networking of all resources required by Embrasure into an existing VPC.</p>
 
         <section id="footnotes">
           <h2 id="references">10 References</h2>
@@ -708,12 +710,12 @@
       reach out!</p>
       <ul>
         <li class="individual">
-          <img src="https://embrasure.s3.us-east-1.amazonaws.com/logo.png" alt="Taron Avagyan"/>
+          <img src="https://embrasure.s3.us-east-1.amazonaws.com/taron.jpg" alt="Taron Avagyan"/>
           <h3>Taron Avagyan</h3>
           <p>Los Angeles, CA</p>
           <ul class="social-icons">
             <li>
-              <a href="mailto:something@gmail.com"
+              <a href="mailto:contact@taronavagyan.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
                  alt="email"/></a>
             </li>
@@ -723,52 +725,52 @@
                  alt="website"/></a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/YOURPATH"
+              <a href="https://www.linkedin.com/in/taronavagyan"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/linkedin.png"
                  alt="linkedin"/></a>
             </li>
           </ul>
         </li>
         <li class="individual">
-          <img src="https://embrasure.s3.us-east-1.amazonaws.com/logo.png" alt="Ivan Lee"/>
+          <img src="https://embrasure.s3.us-east-1.amazonaws.com/ivan.jpg" alt="Ivan Lee"/>
           <h3>Ivan Lee</h3>
-          <p>San Francisco, CA</p>
+          <p>San Francisco Bay Area, CA</p>
           <ul class="social-icons">
             <li>
-              <a href="mailto:something@gmail.com"
+              <a href="mailto:SWE.ivanlee@gmail.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
                  alt="email"/></a>
             </li>
             <li>
-              <a href="https://www.ivanlee.com"
+              <a href="https://ivanlee.dev/"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/www.png"
                  alt="website"/></a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/YOURPATH"
+              <a href="https://www.linkedin.com/in/ivan-lee-7918a02a4/"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/linkedin.png"
                  alt="linkedin"/></a>
             </li>
           </ul>
         </li>
         <li class="individual">
-          <img src="https://embrasure.s3.us-east-1.amazonaws.com/logo.png" alt="Chase Sobey"/>
+          <img src="https://embrasure.s3.us-east-1.amazonaws.com/chase.jpg" alt="Chase Sobey"/>
           <h3>Chase Sobey</h3>
 
-          <p>New York, NY</p>
+          <p>San Francisco Bay Area, CA</p>
           <ul class="social-icons">
             <li>
-              <a href="mailto:something@gmail.com"
+              <a href="mailto:Chase.Sobey.Work@gmail.com"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/email.png"
                  alt="email"/></a>
             </li>
             <li>
-              <a href="https://chasesobey.com"
+              <a href="https://chasesobey.github.io/"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/www.png"
                  alt="website"/></a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/YOURPATH"
+              <a href="https://www.linkedin.com/in/chase-sobey/"
                  target="_blank"><img src="https://s3.amazonaws.com/bam-lambda/images/linkedin.png"
                  alt="linkedin"/></a>
             </li>
@@ -778,3 +780,4 @@
  </section>
   </body>
 </html>
+
